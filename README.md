@@ -77,7 +77,7 @@
 <h1 align="center"> <img src = "./readme/tecnologias.png"/></h1>
 
 - **Banco de Dados:** MySQL;
-- **Back-end:** Flask, Javascript, Apache;
+- **Back-end:** Flask, Javascript, Apache, Python;
 - **Front-end:** HTML, CSS, JavaScript;
 - **Ferramentas:** Visual Studio Code, phpMyAdmin, Figma, Teams, Git e Github;
 
