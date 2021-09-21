@@ -56,7 +56,7 @@
 
 - <img src = "./readme/feito.jpeg" /> KICK-OFF - 16/08/2021 a 22/08/2021
 
-- <img src = "./readme/a_fazer.jpeg" />[ SPRINT 1 ](https://github.com/Grupo1API/Projeto-Jet-Soft/tree/dev-jet/readme/sprint-1) - 30/08/2021 a 19/09/2021
+- <img src = "./readme/a_fazer.jpeg" />[ SPRINT 1 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-1) - 30/08/2021 a 19/09/2021
 
 - <img src = "./readme/a_fazer.jpeg" /> SPRINT 2 - 20/09/2021 a 10/10/2021
 
