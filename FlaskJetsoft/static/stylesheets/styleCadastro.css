@@ -25,20 +25,13 @@ label {
 #nome,
 #cpf,
 #matricula,
-#funcao {
-  height: 35px;
-  width: 250px;
-  border: none;
-  border-radius: 5px;
-  background-color: #e1e1e1;
-  padding: 4px;
-}
-
+#funcao,
+#posto_trabalho,
 #admissao,
 #email,
 #telefone {
   height: 35px;
-  width: 200px;
+  width: 250px;
   border: none;
   border-radius: 5px;
   background-color: #e1e1e1;

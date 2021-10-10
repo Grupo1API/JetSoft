@@ -31,13 +31,13 @@
 
 > **Requisitos**
 
-- <img src = "./readme/a_fazer.jpeg" /> Cadastro de usuários;
-- <img src = "./readme/a_fazer.jpeg" /> Cadastro de contratos;
-- <img src = "./readme/a_fazer.jpeg" /> Cadastro de clientes;
-- <img src = "./readme/a_fazer.jpeg" /> Cadastro de colaboradores;
-- <img src = "./readme/a_fazer.jpeg" /> Cadastro de postos de trabalho;
+- <img src = "./readme/feito.jpeg" /> Cadastro de usuários;
+- <img src = "./readme/feito.jpeg" /> Cadastro de contratos;
+- <img src = "./readme/feito.jpeg" /> Cadastro de clientes;
+- <img src = "./readme/feito.jpeg" /> Cadastro de colaboradores;
+- <img src = "./readme/feito.jpeg" /> Cadastro de postos de trabalho;
 - <img src = "./readme/a_fazer.jpeg" /> Cadastro de alocação;
-- <img src = "./readme/a_fazer.jpeg" /> Quadro de presença;
+- <img src = "./readme/feito.jpeg" /> Quadro de presença;
 - <img src = "./readme/a_fazer.jpeg" /> Painel adminitrativo para alterações;
 - <img src = "./readme/a_fazer.jpeg" /> Emissão de relatorios;
 
@@ -56,9 +56,9 @@
 
 - <img src = "./readme/feito.jpeg" /> KICK-OFF - 16/08/2021 a 22/08/2021
 
-- <img src = "./readme/a_fazer.jpeg" />[ SPRINT 1 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-1) - 30/08/2021 a 19/09/2021
+- <img src = "./readme/feito.jpeg" />[ SPRINT 1 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-1) - 30/08/2021 a 19/09/2021
 
-- <img src = "./readme/a_fazer.jpeg" /> SPRINT 2 - 20/09/2021 a 10/10/2021
+- <img src = "./readme/feito.jpeg" /> [ SPRINT 2 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-2) - 20/09/2021 a 10/10/2021
 
 - <img src = "./readme/a_fazer.jpeg" /> SPRINT 3 - 18/10/2021 a 07/11/2021
 

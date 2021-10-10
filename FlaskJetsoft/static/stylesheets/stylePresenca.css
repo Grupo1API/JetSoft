@@ -51,15 +51,16 @@ section {
 .table td {
   border: 1px solid #000;
   text-align: center;
-  padding: 5px;
-}
-
-.colab {
-  padding: 5px;
-}
-.mes {
-  padding: 10px;
 }
 .dias td {
   font-weight: bold;
+  padding: 5px;
+}
+.tab {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 8px 15px;
+}
+.dados td {
+  padding: 5px;
 }

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Quadro de Presença</title>
+        <title>Controle de Presença</title>
 	    <link rel="shortcut icon" href="./img/favicon.ico"/>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/stylePresenca.css') }}">
@@ -19,7 +19,7 @@
                 <img  class= "perfil" src="../static/img/perfil.jpg" alt="user">
                 <div class="user">
                    <p>Teste</p>
-                   <p class="user-perfil">Perfil Tatico</p> 
+                   <p class="user-perfil">Perfil Operacional</p> 
                 </div>
                 <img class= "seta" src="../static/img/seta-loginFechado.svg" alt="seta para baixo">
             </div>
@@ -33,9 +33,10 @@
                         <img src="../static/img/seta-menuFechado.svg" alt="seta pra cima">
                     </button>
                     <div class="dropdown-container">
-                        <a href="#">Cliente</a>
+                        <a href="{{url_for('cadastro_cliente')}}">Cliente</a>
                         <a href="{{url_for('cadastro')}}">Colaborador</a> <!--id select para o menu ficar setado na pagina que aparece no menu -->
-                        <a href="#">Posto de trabalho</a>
+                        <a href="{{url_for('posto_trabalho')}}">Posto de trabalho</a>
+                        <a href="{{url_for('contrato')}}">Contratos</a>
                     </div>
                     <button class="dropdown-btn">
                         Quadro de controle
@@ -70,9 +71,9 @@
                         <table id="tab_cadastro" cellspacing="12" class="tabela">
                             <tr>				
                                 <td>Colaborador:</td>
-                                <td><input type="text" name="colaborador" id="nome" class="txt" placeholder="Nome Completo" required /></td>
+                                <td><input type="text" name="colaborador" id="nome" class="txt" placeholder="Nome Completo"  /></td>
                                 <td>Dia:</td>
-                                <td><input type="number" name="dia" id="dia" class="number" required pattern="[0-9]{2}" /></td>
+                                <td><input type="number" name="dia" id="dia" class="number" placeholder="Data Presente"  pattern="[0-9]{2}" /></td>
                             </tr>            	
                             <tr>
                                 <td>Presença ou Falta</td>
@@ -97,15 +98,14 @@
                             {%endfor%}
                             {%endif%}
                             {%endwith%}
-                            <button type="submit" id="botao_cad">Salvar</button>
+                            <button type="submit" name="submit_button" value="presenca" id="botao_cad">Salvar</button>
                         </div>
-
                         <div class="table">
                             <table>
-                                <tr>
-                                    <th rowspan="2" class="colab"></td>Colaborador / Função / Cobertura</th>
-                                    <th colspan="33" class="mes">Setembro</th>
-                                </tr>
+                                <td rowspan="2" class="colab tab" >Colaborador</td>
+                                <td rowspan="2" class="colab tab" >Posto de Trabalho</td>
+                                <td rowspan="2" class="colab tab" >Cobertura</td>
+                                <th colspan="33" class="mes tab ">Setembro</th>
                                 <tr class="dias">
                                     <td>1</td>
                                     <td>2</td>
@@ -139,12 +139,10 @@
                                     <td>30</td>
                                 </tr>
                                 {% for row in controle %}
-                                <tr>
-                                    <td class="colab">{{row.1}} / 
-                                        {{row.2}} / 
-                                        {{row.3}}
-                                    </td>
-                                    <td>{{row.4}}</td>
+                                <tr class="dados">
+                                    <td class="colab" >{{row.1}}</td>
+                                    <td class="colab" >{{row.2}}</td>
+                                    <td class="colab" >{{row.4}}</td>
                                     <td>{{row.5}}</td>
                                     <td>{{row.6}}</td>
                                     <td>{{row.7}}</td>
@@ -174,6 +172,7 @@
                                     <td>{{row.31}}</td>
                                     <td>{{row.32}}</td>
                                     <td>{{row.33}}</td>
+                                    <td>{{row.34}}</td>
                                 </tr>
                                 {% endfor %}
                             </table>
