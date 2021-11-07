@@ -1,5 +1,4 @@
-/* //////////////// cadastro de clientes ////////////// */
-
+/* pagina de eventos */
 /* título */
 .titulo {
   font-weight: bold;
@@ -10,27 +9,35 @@
 }
 body {
   outline: none;
-  font-family: sans-serif;
 }
 /* campos input do formulário */
-#razao_social,
-#nome_fantasia,
-#cnpj,
-#endereco,
-#numero,
-#bairro,
-#cidade,
-#estado_uf,
-#cep,
-#contato,
-#email,
-#data_admissao {
+#nome_evento,
+#data,
+#descricao {
   height: 35px;
   width: 250px;
   border: none;
   border-radius: 5px;
   background-color: #e1e1e1;
   padding: 4px;
+}
+/*textarea*/
+#descricao {
+  width: 250px;
+  height: 80px;
+}
+
+/* tabela do formulário */
+.bt-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px 0px 90px;
+}
+#tab_cadastro,
+.table {
+  display: flex;
+  justify-content: center;
 }
 
 /* botão - cadastrar */
@@ -41,8 +48,7 @@ body {
   border-radius: 4px;
   border: 1px solid #ccc;
   color: #ffffff;
-  font-family: sans-serif;
-  font-size: 16px;
+  font-size: 12pt;
   cursor: pointer;
 }
 #botao_cad:hover {
@@ -51,16 +57,23 @@ body {
   text-shadow: none;
 }
 
-/* tabela do formulário */
-.bt-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 30px 0px 90px;
+/* tabela */
+#evento {
+  border-collapse: collapse;
 }
-#tab_cadastro {
-  display: flex;
-  justify-content: center;
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 8px;
+  width: 20vw;
+}
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.table th {
+  background-color: #2d4364;
+  color: white;
 }
 
 .sair {

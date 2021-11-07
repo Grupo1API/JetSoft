@@ -16,40 +16,40 @@
             <p>Logo</p>
         </div>
         <div class="login">
-            <img class="perfil" src="../static/img/perfil.jpg" alt="user">
+            
             <div class="user">
-                <p>Teste</p>
-                <p class="user-perfil">Perfil Operacional</p>
+                <p>{{nome.0.0}}</p>
+                <p class="user-perfil">{{nivel.0.0}}</p>
             </div>
-            <img class="seta" src="../static/img/seta-loginFechado.svg" alt="seta para baixo">
+            <a href="{{url_for('logout')}}"><button class="sair">Sair</button></a>
         </div>
     </header>
     <div class="container">
         <div class="menu">
             <nav>
-                <a href="#">Home</a>
-                <button class="dropdown-btn" id="select"> <!--id select para o menu ficar setado na pagina que aparece no menu -->
+                <a href="{{url_for('index')}}">Home</a>
+                <button class="dropdown-btn" id="select"> <!--id select para o menu ficar setado na pagina que aparece -->
                     Cadastro
                     <img src="../static/img/seta-menuFechado.svg" alt="seta pra cima">
                 </button>
                 <div class="dropdown-container">
                     <a href="{{url_for('cadastro_cliente')}}">Cliente</a>
-                    <a href="{{url_for('cadastro')}}" >Colaborador</a> <!--id select para o menu ficar setado na pagina que aparece no menu -->
+                    <a href="{{url_for('cadastro')}}" >Colaborador</a> 
                     <a href="{{url_for('posto_trabalho')}}">Posto de trabalho</a>
-                    <a href="{{url_for('contrato')}}" id="select">Contratos</a>
+                    <a href="{{url_for('contrato')}}" id="select">Contratos</a> <!--id select para o menu ficar setado na pagina que aparece -->
                 </div>
                 <button class="dropdown-btn">
                     Quadro de controle
                     <img src="../static/img/seta-menuFechado.svg" alt="seta pra cima">
                 </button>
                 <div class="dropdown-container">
-                    <a href="#">Quadro de clientes</a>
-                    <a href="#">Quadro de colaborador</a>
-                    <a href="#">Posto de trabalho</a>
+                    <a href="{{url_for('quadro_cliente')}}">Quadro de clientes</a>
+                    <a href="{{url_for('quadro_colaborador')}}">Quadro de colaborador</a>
+                    <a href="{{url_for('postos_trabalho')}}">Posto de trabalho</a>
                 </div>
                 <a href="{{url_for('controle')}}">Controle de Presença</a>
-                <a href="#">Eventos</a>
-                <a href="#">Contratos</a>
+                <a href="{{url_for('evento')}}">Eventos</a>
+                <a href="{{url_for('quadro_contrato')}}">Contratos</a>
                 <a href="#">Relatorios</a>
                 <button class="dropdown-btn">
                     Autorização
@@ -70,84 +70,40 @@
                 <form name="contrato" action="" method="POST">
                     <table id="tab_cadastro" cellspacing="12">
                         <tr>
-                            <td>Nome do Cliente:</td>
-                            <td><input type="text" name="cliente" id="nome" class="txt" placeholder="Nome completo"
-                                    required /></td>
-                            <td>CNPJ:</td>
-                            <td><input type="number" name="cnpj" id="cnpj" class="num" placeholder="XX.XXX.XXX/0001-XX" required />
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td>Endereço:</td>
-                            <td><input type="text" name="endereco" id="endereco" class="txt" placeholder="Endereço"
-                                    required /></td>
-                            <td>Bairro:</td>
-                            <td><input type="text" name="bairro" id="bairro" class="txt" placeholder="Bairro"
-                                    required /></td>
+                            <td>Cliente / Posto de Trabalho:</td>
+                            <td><select id="select-contrato" name="clienteposto">
+                                <option value=""></option>
+                                {%for row in cliente %}                             
+                                <option value="{{row.0}} | {{row.1}}">{{row.0}} | {{row.1}}</option>                                                               
+                                {% endfor %}                                  
+                            </select></td>
+                            <td>Data de admissão:</td>
+                            <td><input type="date" name="data_admissao" id="data" class="data"
+                                    required /></td>                          
+                            
                         </tr>
                         <tr>
-                            <td>Número:</td>
-                            <td><input type="number" name="numero" id="numero" class="num" placeholder="Número Residencial"
-                                    required /></td>
-
-                        </tr>
-                      
-                        <tr>
-                            <td>Cidade:</td>
-                            <td><input type="text" name="cidade" id="cidade" class="txt" placeholder="Cidade"
-                                    required /></td>
-                            <td>Estado:</td>
-                            <td><input type="text" name="estado_uf" id="estado" class="txt" placeholder="Estado"
-                                    required /></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>CEP:</td>
-                            <td><input type="number" name="cep" id="cep" class="num" placeholder="XXXXX-XXX" required /></td>
-                            <td>Postos de Trabalhos:</td>
-                            <td><input type="text" name="posto_trabalho" id="postos" class="text"
-                                    placeholder="Postos de trabalhos" required /></td>
-                        </tr>
-                        <tr>
-                            <td>Contato:</td>
-                            <td><input type="number" name="contato" id="contato" class="num" placeholder="(XX) XXXXX-XXXX"
-                                    required /></td>
                             <td>Valor:</td>
                             <td><input type="number" name="valor" id="valor" class="num" placeholder="Valor(R$)" required />
                             </td>
-                        </tr>
-
-                       
-                        <tr>
-                            <td>Escala:</td>
-                            <td><input type="text" name="escala" id="escala" class="txt" placeholder="Ex: 12x36"
-                                    required /></td>
-                            <td>Data de admissão:</td>
-                            <td><input type="date" name="data_admissao" id="data" class="data"
-                                    required /></td>
-                        </tr>
-                        <tr>
-                        </tr>
+                        </tr>                       
                     </table>
                     <div class="bt-container">
                         <!--essa parte é o codigo com flask para exibir a mensagem de confirmação de envio -->
-                        {%with messages = get_flashed_messages() %}
-
-                        {%if messages%}
-
-                        {%for message in messages%}
-
-                        {{message}}
-
-                        {%endfor%}
-                        {%endif%}
-                        {%endwith%}
-
-                        <br><br>
                         <button type="submit" class="cadastrar" id="botao_cad">Cadastrar</button>
+                        <div class="concluido">
+                            {%with messages = get_flashed_messages() %}
 
+                            {%if messages%}
+    
+                            {%for message in messages%}
+    
+                            {{message}}
+    
+                            {%endfor%}
+                            {%endif%}
+                            {%endwith%}
+                        </div>           
                     </div>
                 </form>
             </div>

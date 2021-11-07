@@ -1,4 +1,4 @@
-/* //////////////// cadastro de clientes ////////////// */
+/* //////////////// cadastro de colaboradores ////////////// */
 
 /* título */
 .titulo {
@@ -10,21 +10,17 @@
 }
 body {
   outline: none;
-  font-family: sans-serif;
 }
+
 /* campos input do formulário */
-#razao_social,
-#nome_fantasia,
-#cnpj,
-#endereco,
-#numero,
-#bairro,
-#cidade,
-#estado_uf,
-#cep,
-#contato,
+#nome,
+#cpf,
+#matricula,
+#funcao,
+#posto_trabalho,
+#admissao,
 #email,
-#data_admissao {
+#telefone,#select-posto {
   height: 35px;
   width: 250px;
   border: none;
@@ -33,6 +29,18 @@ body {
   padding: 4px;
 }
 
+/* botao - tipo de cobertura */
+.radio {
+  height: 35px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding-top: 10px;
+  margin-top: -1px;
+  vertical-align: middle;
+  text-align: center;
+}
 /* botão - cadastrar */
 #botao_cad {
   width: 150px;
@@ -50,7 +58,6 @@ body {
   box-shadow: #22334d;
   text-shadow: none;
 }
-
 /* tabela do formulário */
 .bt-container {
   display: flex;

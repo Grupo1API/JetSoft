@@ -4,12 +4,12 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
+  font-family: sans-serif;
 }
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: sans-serif;
 }
 /*/////////////header ////////////////  */
 
@@ -143,3 +143,25 @@ section {
 #select {
   color: #000;
 }
+
+.sair {
+  padding: 10px 17px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  
+}
+
+.sair {
+  background-color:black;
+  color: white;
+  border: none;
+}
+
+.sair:hover {
+  background-color: red;
+  color: white;
+}
+

@@ -36,7 +36,7 @@
 - <img src = "./readme/feito.jpeg" /> Cadastro de clientes;
 - <img src = "./readme/feito.jpeg" /> Cadastro de colaboradores;
 - <img src = "./readme/feito.jpeg" /> Cadastro de postos de trabalho;
-- <img src = "./readme/a_fazer.jpeg" /> Cadastro de alocação;
+- <img src = "./readme/feito.jpeg" /> Cadastro de alocação;
 - <img src = "./readme/feito.jpeg" /> Quadro de presença;
 - <img src = "./readme/a_fazer.jpeg" /> Painel adminitrativo para alterações;
 - <img src = "./readme/a_fazer.jpeg" /> Emissão de relatorios;
@@ -45,10 +45,10 @@
 
 > **Requisitos não funcionais**
 
-- <img src = "./readme/a_fazer.jpeg" /> Banco de dados relacional;
+- <img src = "./readme/feito.jpeg" /> Banco de dados relacional;
 - <img src = "./readme/a_fazer.jpeg" /> O sistema deve ter um plano de contingência caso ocorra falhas;
-- <img src = "./readme/a_fazer.jpeg" /> O sistema deve ser seguro.
-- <img src = "./readme/a_fazer.jpeg" /> O sistema deve ser simples e fácil de usar.
+- <img src = "./readme/feito.jpeg" /> O sistema deve ser seguro.
+- <img src = "./readme/feito.jpeg" /> O sistema deve ser simples e fácil de usar.
 
 <br><br>
 
@@ -60,7 +60,7 @@
 
 - <img src = "./readme/feito.jpeg" /> [ SPRINT 2 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-2) - 20/09/2021 a 10/10/2021
 
-- <img src = "./readme/a_fazer.jpeg" /> SPRINT 3 - 18/10/2021 a 07/11/2021
+- <img src = "./readme/feito.jpeg" /> [ SPRINT 3 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-3) - 18/10/2021 a 07/11/2021
 
 - <img src = "./readme/a_fazer.jpeg" /> SPRINT 4 - 08/11/2021 a 28/11/2021
 
@@ -115,6 +115,5 @@
 | **Francisco Quirino** | Desenvolvedor | [@LinkedIn](https://www.linkedin.com/in/francisco-quirino-4087281b1)     | [@GitHub](https://github.com/ciscoquirino)     | <img src = "./readme/francisco.jpeg" alt="drawing" width="40" > |
 | **Douglas Queiroz**   | Desenvolvedor | [@LinkedIn](https://www.linkedin.com/in/douglas-queiroz-3b9a72212/)      | [@GitHub](https://github.com/douglaswe)        | <img src = "./readme/douglas.jpeg" width="40">                  |
 | **Richard Rafael**    | Desenvolvedor | [@LinkedIn](https://www.linkedin.com/mwlite/in/richard-soares-002195221) | [@GitHub](https://github.com/Richardrafael)    | <img src = "./readme/richard.jpeg" width="40">                  |
-| **Juliana Francisco** | Desenvolvedor | [@LinkedIn](https://www.linkedin.com/in/juliana-francisco-433a4492/)     | [@GitHub](https://github.com/juliana-oss)      | <img src = "./readme/juliana gloria.jpeg" width="40">           |
 
 <br>

@@ -16,25 +16,25 @@
                     <p>Logo</p>  
                 </div>
                 <div class="login">
-                    <img  class= "perfil" src="../static/img/perfil.jpg" alt="user">
+                   
                     <div class="user">
-                       <p>Teste</p>
-                       <p class="user-perfil">Perfil Operacional</p> 
+                       <p>{{nome.0.0}}</p>
+                       <p class="user-perfil">{{nivel.0.0}}</p> 
                     </div>
-                    <img class= "seta" src="../static/img/seta-loginFechado.svg" alt="seta para baixo">
+                    <a href="{{url_for('logout')}}"><button class="sair">Sair</button></a>
                 </div>
             </header>
             <div class="container">
                 <div class="menu">
                     <nav>
-                        <a href="#">Home</a>
-                        <button class="dropdown-btn" id="select"> <!--id select para o menu ficar setado na pagina que aparece no menu -->
+                        <a href="{{url_for('index')}}">Home</a>
+                        <button class="dropdown-btn" id="select">  <!--id select para o menu ficar setado na pagina que aparece -->
                             Cadastro
                             <img src="../static/img/seta-menuFechado.svg" alt="seta pra cima">
                         </button>
-                        <div class="dropdown-container">
-                            <a href="{{url_for('cadastro_cliente')}}"id="select">Cliente</a>
-                            <a href="{{url_for('cadastro')}}" >Colaborador</a> <!--id select para o menu ficar setado na pagina que aparece no menu -->
+                        <div class="dropdown-container" >
+                            <a href="{{url_for('cadastro_cliente')}}" id="select">Cliente</a> <!--id select para o menu ficar setado na pagina que aparece no menu -->
+                            <a href="{{url_for('cadastro')}}" >Colaborador</a>
                             <a href="{{url_for('posto_trabalho')}}">Posto de trabalho</a>
                             <a href="{{url_for('contrato')}}">Contratos</a>
                         </div>
@@ -43,13 +43,13 @@
                             <img src="../static/img/seta-menuFechado.svg" alt="seta pra cima">
                         </button>
                         <div class="dropdown-container">
-                            <a href="#">Quadro de clientes</a>
-                            <a href="#">Quadro de colaborador</a>
-                            <a href="#">Posto de trabalho</a>
+                            <a href="{{url_for('quadro_cliente')}}">Quadro de clientes</a>
+                            <a href="{{url_for('quadro_colaborador')}}">Quadro de colaborador</a>
+                            <a href="{{url_for('postos_trabalho')}}">Posto de trabalho</a>
                         </div>
                         <a href="{{url_for('controle')}}">Controle de Presença</a>
-                        <a href="#">Eventos</a>
-                        <a href="#">Contratos</a>
+                        <a href="{{url_for('evento')}}">Eventos</a>
+                        <a href="{{url_for('quadro_contrato')}}">Contratos</a>
                         <a href="#">Relatorios</a>
                         <button class="dropdown-btn">
                             Autorização
@@ -71,59 +71,58 @@
                         <table id="tab_cadastro" cellspacing="12">
                         <tr>				
                             <td>Razão Social:</td>
-                            <td><input type="text" name="razao_social" id="razao_social" class="txt" placeholder="Razão Social"/></td>
+                            <td><input type="text" name="razao_social" id="razao_social" class="txt" placeholder="Razão Social" required/></td>
                             <td>Cidade:</td>
-                            <td><input type="text" name="cidade" id="cidade" class="txt" placeholder="Cidade Atual" /></td>						
+                            <td><input type="text" name="cidade" id="cidade" class="txt" placeholder="Cidade Atual" required /></td>						
                         </tr>            	
                         <tr>	
-                            <td>Nome:</td>
-                            <td><input type="text" name="nome_fantasia" id="nome_fantasia" class="txt" placeholder="Nome"/></td>
+                            <td>Nome Fantasia:</td>
+                            <td><input type="text" name="nome_fantasia" id="nome_fantasia" class="txt" placeholder="Nome Fantasia" required/></td>
                             <td>Estado:</td>
-                            <td><input type="text" name="estado_uf" id="estado_uf" class="txt" placeholder="UF" /></td>
+                            <td><input type="text" name="estado_uf" id="estado_uf" class="txt" placeholder="UF" required /></td>
                         </tr>				
                         <tr>
-                            <td>CNPJ:</td>
-                            <td><input type="number" name="cnpj" id="cnpj" class="num" placeholder="XX.XXX.XXX/0001-XX" /></td>
-                            <td>CEP:</td>
-                            <td><input type="number" name="cep" id="cep" class="num" placeholder="XXXXX-XXX" /></td>
+                            <td>CNPJ (somente números):</td>
+                            <td><input type="text" name="cnpj" id="cnpj" class="num" placeholder="XX.XXX.XXX/0001-XX" required /></td>
+                            <td>CEP (somente números):</td>
+                            <td><input type="text" name="cep" id="cep" class="num" placeholder="XXXXX-XXX" required /></td>
                         </tr>
                         <tr>
                             <td>Endereço:</td>
-                            <td><input type="text" name="endereco" id="endereco" class="txt" placeholder="Endereço Atual"/></td>
+                            <td><input type="text" name="endereco" id="endereco" class="txt" placeholder="Endereço Atual" required/></td>
                             <td>Contato:</td>
-                            <td><input type="number" name="contato" id="contato" class="num" placeholder="(XX) XXXXX-XXXX" /></td>
+                            <td><input type="text" name="contato" id="contato" class="num" placeholder="(XX) XXXXX-XXXX" required /></td>
                         </tr>
                         <tr>
                             <td>Número:</td>
-                            <td><input type="number" name="numero"  id="numero" class="num" placeholder="Numero Residencial"/></td>					
+                            <td><input type="text" name="numero"  id="numero" class="num" placeholder="Numero Residencial" required/></td>					
                             <td>E-mail:</td>
-                            <td><input type="email" name="email" id="email" class="txt" placeholder="teste@teste.com" /></td>						
+                            <td><input type="email" name="email" id="email" class="txt" placeholder="teste@teste.com" required/></td>						
                         </tr>						
                         <tr>
                             <td>Bairro:</td>
-                            <td><input type="text" name="bairro" id="bairro" class="txt" placeholder="Bairro Atual"/></td>					
+                            <td><input type="text" name="bairro" id="bairro" class="txt" placeholder="Bairro Atual"required/></td>					
                             <td>Data de admissão:</td>
-                            <td><input type="date" name="data_admissao" id="data_admissao" class="txt" /></td>
+                            <td><input type="date" name="data_admissao" id="data_admissao" class="txt" required/></td>
                             <td>
                         </tr>	
                         </table>
                         <div class="bt-container">
                             <!--essa parte é o codigo com flask para exibir a mensagem de confirmação de envio -->
-                            {%with messages = get_flashed_messages() %}
-        
-                            {%if messages%}
-        
-                            {%for message in messages%}
-        
-                            {{message}}
-        
-                            {%endfor%}
-                            {%endif%}
-                            {%endwith%}
-
-                            <br><br>
-        
                             <button type="submit" class="cadastrar" id="botao_cad">Cadastrar</button>
+                            <div class="concluido">
+                                {%with messages = get_flashed_messages() %}
+
+                                {%if messages%}
+        
+                                {%for message in messages%}
+        
+                                {{message}}
+        
+                                {%endfor%}
+                                {%endif%}
+                                {%endwith%}
+                            </div>           
                         </div>
                     </form>
                     </div>

@@ -97,3 +97,25 @@ tr {
   box-shadow: #22334d;
   text-shadow: none;
 }
+
+.sair {
+  padding: 10px 17px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  
+}
+
+.sair {
+  background-color:black;
+  color: white;
+  border: none;
+}
+
+.sair:hover {
+  background-color: red;
+  color: white;
+}
+

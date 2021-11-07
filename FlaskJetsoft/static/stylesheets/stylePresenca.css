@@ -1,13 +1,16 @@
-section {
-  align-items: center;
-}
+/* pagina de controle de presença  */
 
+/* titulo */
 .titulo {
-  margin: 70px 0px 50px;
+  font-weight: bold;
+  text-align: center;
   font-size: 28px;
+
+  margin: 70px 0px 80px;
 }
+/* formulario */
 .txt,
-.number {
+.number,#select-colaborador {
   height: 35px;
   width: 250px;
   border: none;
@@ -18,49 +21,78 @@ section {
 .number {
   width: 150px;
 }
-.bt-container button {
+#botao_cad {
   width: 150px;
   height: 30px;
   background-color: #364e73;
   border-radius: 4px;
   border: 1px solid #ccc;
   color: #ffffff;
-  font-family: sans-serif;
   font-size: 12pt;
   cursor: pointer;
 }
+#botao_cad:hover {
+  background: #22334d;
+  box-shadow: #22334d;
+  text-shadow: none;
+}
+/* tabela do formulário */
 .bt-container {
   display: flex;
-  justify-content: center;
-  margin: 20px 0px 90px;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px 0px 90px;
 }
-#tab_cadastro {
+#tab_cadastro,
+.table {
   display: flex;
   justify-content: center;
 }
 
 /* //////////////////tabela //////////////////// */
-.table table {
-  border: 1px solid #000;
+#evento {
+  border-collapse: collapse;
+}
+#evento th {
   text-align: center;
 }
+.table table,
+.table td,
 .table th {
   border: 1px solid #000;
-  text-align: center;
 }
+.table th,
 .table td {
-  border: 1px solid #000;
-  text-align: center;
+  text-align: left;
+  padding: 8px;
 }
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.table th,
 .dias td {
-  font-weight: bold;
-  padding: 5px;
+  background-color: #2d4364;
+  color: white;
 }
-.tab {
-  font-size: 18px;
-  font-weight: 700;
-  padding: 8px 15px;
+
+.sair {
+  padding: 10px 17px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  
 }
-.dados td {
-  padding: 5px;
+
+.sair {
+  background-color:black;
+  color: white;
+  border: none;
 }
+
+.sair:hover {
+  background-color: red;
+  color: white;
+}
+

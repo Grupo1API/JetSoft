@@ -6,7 +6,7 @@
         <title>Cadastro de Colaboradores</title>
 	    <link rel="shortcut icon" href="./img/favicon.ico"/>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/styleCadastro.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/styleCadastroColaborador.css') }}">
         <script src="{{url_for('static', filename='script/script.js')}}" defer> </script>
     </head>
     <body>
@@ -16,25 +16,25 @@
                     <p>Logo</p>  
                 </div>
                 <div class="login">
-                    <img  class= "perfil" src="../static/img/perfil.jpg" alt="user">
+                   
                     <div class="user">
-                       <p>Teste</p>
-                       <p class="user-perfil">Perfil operacional</p> 
+                       <p>{{nome.0.0}}</p>
+                       <p class="user-perfil">{{nivel.0.0}}</p> 
                     </div>
-                    <img class= "seta" src="../static/img/seta-loginFechado.svg" alt="seta para baixo">
+                    <a href="{{url_for('logout')}}"><button class="sair">Sair</button></a>
                 </div>
             </header>
             <div class="container">
                 <div class="menu">
                     <nav>
-                        <a href="#">Home</a>
-                        <button class="dropdown-btn" id="select"> <!--id select para o menu ficar setado na pagina que aparece no menu -->
+                        <a href="{{url_for('index')}}">Home</a>
+                        <button class="dropdown-btn" id="select"> <!--id select para o menu ficar setado na pagina que aparece -->
                             Cadastro
                             <img src="../static/img/seta-menuFechado.svg" alt="seta pra cima">
                         </button>
                         <div class="dropdown-container">
                             <a href="{{url_for('cadastro_cliente')}}">Cliente</a>
-                            <a href="{{url_for('cadastro')}}" id="select">Colaborador</a> <!--id select para o menu ficar setado na pagina que aparece no menu -->
+                            <a href="{{url_for('cadastro')}}" id="select">Colaborador</a> <!--id select para o menu ficar setado na pagina que aparece -->
                             <a href="{{url_for('posto_trabalho')}}">Posto de trabalho</a>
                             <a href="{{url_for('contrato')}}">Contratos</a>
                         </div>
@@ -43,13 +43,13 @@
                             <img src="../static/img/seta-menuFechado.svg" alt="seta pra cima">
                         </button>
                         <div class="dropdown-container">
-                            <a href="#">Quadro de clientes</a>
-                            <a href="#">Quadro de colaborador</a>
-                            <a href="#">Posto de trabalho</a>
+                            <a href="{{url_for('quadro_cliente')}}">Quadro de clientes</a>
+                            <a href="{{url_for('quadro_colaborador')}}">Quadro de colaborador</a>
+                            <a href="{{url_for('postos_trabalho')}}">Posto de trabalho</a>
                         </div>
                         <a href="{{url_for('controle')}}">Controle de Presença</a>
-                        <a href="#">Eventos</a>
-                        <a href="#">Contratos</a>
+                        <a href="{{url_for('evento')}}">Eventos</a>
+                        <a href="{{url_for('quadro_contrato')}}">Contratos</a>
                         <a href="#">Relatorios</a>
                         <button class="dropdown-btn">
                             Autorização
@@ -92,7 +92,13 @@
                             <td>Função:</td>
                             <td><input type="text" name="funcao" id="funcao" class="txt" placeholder="Área atuação" required/></td>
                             <td>Posto de Trabalho:</td>
-                            <td><input type="text" name="posto_trabalho" id="posto_trabalho" class="txt" placeholder="Posto de Trabalho" required/></td>
+                            <td>
+                                <select id="select-posto" name="posto_trabalho">
+                                <option value=""></option>
+                                {%for row in posto_trabalho %}                             
+                                <option value="{{row.0}}">{{row.0}}</option>                                                               
+                                {% endfor %}                                  
+                            </select></td>
                         </tr>   
                         <tr>
                             <td>Tipo de Cobertura:</td>
@@ -108,21 +114,20 @@
                         </table>
                         <div class="bt-container">
                             <!--essa parte é o codigo com flask para exibir a mensagem de confirmação de envio -->
-                            {%with messages = get_flashed_messages() %}
-        
-                            {%if messages%}
-        
-                            {%for message in messages%}
-        
-                            {{message}}
-        
-                            {%endfor%}
-                            {%endif%}
-                            {%endwith%}
-        
-                            <br><br>
                             <button type="submit" class="cadastrar" id="botao_cad">Cadastrar</button>
+                            <div class="concluido">
+                                {%with messages = get_flashed_messages() %}
+
+                                {%if messages%}
         
+                                {%for message in messages%}
+        
+                                {{message}}
+        
+                                {%endfor%}
+                                {%endif%}
+                                {%endwith%}
+                            </div>           
                         </div>
                     </form>
                     </div>
