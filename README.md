@@ -60,7 +60,7 @@
 
 - <img src = "./readme/feito.jpeg" /> [ SPRINT 2 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-2) - 20/09/2021 a 10/10/2021
 
-- <img src = "./readme/feito.jpeg" /> [ SPRINT 3 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-3) - 18/10/2021 a 07/11/2021
+- <img src = "./readme/feito.jpeg" /> [ SPRINT 3 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-3) - 18/10/2021 a 07/11/202
 
 - <img src = "./readme/a_fazer.jpeg" /> SPRINT 4 - 08/11/2021 a 28/11/2021
 
