@@ -1,6 +1,7 @@
 # importando framework flask e bibliotecas para usar servicoes web
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 
+from functools import wraps
 # importando biblioteca para conectar com mysql
 from flaskext.mysql import MySQL
 
@@ -16,12 +17,28 @@ app.config['MYSQL_DATABASE_DB'] = 'jetsoft'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 mysql.init_app(app)
-
+# python -m pip install --upgrade pip setuptools virtualenv- para atualizar o env
 # rota para a página inicial
+# config pro phpmyadmin em caso de o erro: "Field ''1'' doesn't have a default value no wampserver
+# select @@GLOBAL.sql_mode
+# set GLOBAL sql_mode='ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
 
 
-@app.route('/')
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('You need to login first.')
+            return redirect(url_for('login'))
+    return wrap
+
+
+@app.route('/index')
+@login_required
 def index():
+
     con = mysql.connect()
     cur = con.cursor()
     cur.execute(
@@ -47,6 +64,7 @@ def index():
 
 
 @app.route('/controle_presenca', methods=['GET', 'POST'])
+@login_required
 def controle():
 
     con = mysql.connect()
@@ -82,6 +100,7 @@ def controle():
 
 @app.route('/cadastro_colaboradores', methods=['GET', 'POST'])
 # função para tratamento dos dados
+@login_required
 def cadastro():
     # código de conectividade com banco de dados
     con = mysql.connect()
@@ -131,6 +150,7 @@ def cadastro():
 
 
 @app.route('/contrato', methods=['GET', 'POST'])
+@login_required
 def contrato():
     con = mysql.connect()
     cur = con.cursor()
@@ -171,12 +191,9 @@ def contrato():
     else:
         return render_template('cadastro_contrato.html', cliente=cliente, nome=nome, nivel=nivel)
 
-# config pro phpmyadmin em caso de o erro: "Field ''1'' doesn't have a default value no wampserver
-# select @@GLOBAL.sql_mode
-# set GLOBAL sql_mode='ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
-
 
 @app.route('/cadastro_posto_trabalho', methods=['GET', 'POST'])
+@login_required
 def posto_trabalho():
     con = mysql.connect()
     cur = con.cursor()
@@ -209,6 +226,7 @@ def posto_trabalho():
 
 
 @app.route('/cadastro_cliente', methods=['GET', 'POST'])
+@login_required
 def cadastro_cliente():
     con = mysql.connect()
     cur = con.cursor()
@@ -241,6 +259,7 @@ def cadastro_cliente():
 
 
 @app.route('/evento', methods=['GET', 'POST'])
+@login_required
 def evento():
     con = mysql.connect()
     cur = con.cursor()
@@ -266,7 +285,7 @@ def evento():
         return render_template('/evento.html', controle=data, nome=nome, nivel=nivel)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     msg = ''
     if request.method == "POST":
@@ -276,12 +295,9 @@ def login():
         cur = con.cursor()
         cur.execute(
             'SELECT * FROM usuarios WHERE username=%s AND password=%s', (username, password,))
-
         account = cur.fetchone()
         if account:
-            session['loggedin'] = True
-            session['id'] = 'id'
-            session['username'] = username
+            session['logged_in'] = True
             return redirect(url_for('index'))
         else:
             msg = 'Login ou senha incorreta!'
@@ -290,12 +306,13 @@ def login():
 
 @app.route("/logout")
 def logout():
-    # session.pop('username')
-
+    # session.pop('username',None)
+    session.pop('logged_in', None)
     return redirect(url_for('login'))
 
 
 @app.route('/quadro_cliente')
+@login_required
 def quadro_cliente():
     con = mysql.connect()
     cur = con.cursor()
@@ -306,10 +323,12 @@ def quadro_cliente():
     nome = cur.fetchall()
     cur.execute('SELECT nivel FROM usuarios ')
     nivel = cur.fetchall()
+
     return render_template('/quadro_cliente.html', quadro_cliente=quadro_cliente, nome=nome, nivel=nivel)
 
 
 @app.route('/index_tatico')
+@login_required
 def index_tatico():
     con = mysql.connect()
     cur = con.cursor()
@@ -321,6 +340,7 @@ def index_tatico():
 
 
 @app.route('/cadastro_usuario', methods=['GET', 'POST'])
+@login_required
 def cadastro_usuario():
     con = mysql.connect()
     cur = con.cursor()
@@ -346,6 +366,7 @@ def cadastro_usuario():
 
 
 @app.route('/quadro_colaborador', methods=['GET'])
+@login_required
 def quadro_colaborador():
     con = mysql.connect()
     cur = con.cursor()
@@ -362,6 +383,7 @@ def quadro_colaborador():
 
 
 @app.route('/postos_trabalho', methods=['GET'])
+@login_required
 def postos_trabalho():
     con = mysql.connect()
     cur = con.cursor()
@@ -375,6 +397,7 @@ def postos_trabalho():
 
 
 @app.route('/quadro_contrato', methods=['GET'])
+@login_required
 def quadro_contrato():
     con = mysql.connect()
     cur = con.cursor()
