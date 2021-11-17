@@ -11,10 +11,10 @@ app = Flask(__name__)
 app.secret_key = "flash message"
 
 # configurando conexão com banco de dados
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_USER'] = 'b4c0c1a1322b13'
+app.config['MYSQL_DATABASE_PASSWORD'] = '027cf5ac'
 app.config['MYSQL_DATABASE_DB'] = 'jetsoft'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_HOST'] = 'us-cdbr-east-04.cleardb.com'
 
 mysql.init_app(app)
 # python -m pip install --upgrade pip setuptools virtualenv- para atualizar o env
