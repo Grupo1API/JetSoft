@@ -413,5 +413,5 @@ def quadro_contrato():
     return render_template('/quadro_contrato.html', quadro_contrato=quadro_contrato, nome=nome, nivel=nivel)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
