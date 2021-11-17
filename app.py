@@ -5,19 +5,18 @@ from functools import wraps
 # importando biblioteca para conectar com mysql
 from flaskext.mysql import MySQL
 
+mysql = MySQL()
+# iniciando variavel app
 app = Flask(__name__)
-# mysql = MySQL()
-# # iniciando variavel app
-
 # app.secret_key = "flash message"
 
 # # configurando conexão com banco de dados
-# app.config['MYSQL_DATABASE_USER'] = 'b4c0c1a1322b13'
-# app.config['MYSQL_DATABASE_PASSWORD'] = '027cf5ac'
+# app.config['MYSQL_DATABASE_USER'] = 'root'
+# app.config['MYSQL_DATABASE_PASSWORD'] = ''
 # app.config['MYSQL_DATABASE_DB'] = 'jetsoft'
-# app.config['MYSQL_DATABASE_HOST'] = 'us-cdbr-east-04.cleardb.com'
+# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
-# # mysql.init_app(app)
+# mysql.init_app(app)
 # # python -m pip install --upgrade pip setuptools virtualenv- para atualizar o env
 # # rota para a página inicial
 # # config pro phpmyadmin em caso de o erro: "Field ''1'' doesn't have a default value no wampserver
@@ -27,8 +26,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    return "ok"
 
-    return 'ok'
 # def login_required(f):
 #     @wraps(f)
 #     def wrap(*args, **kwargs):
@@ -418,5 +417,5 @@ def index():
 #     return render_template('/quadro_contrato.html', quadro_contrato=quadro_contrato, nome=nome, nivel=nivel)
 
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(debug=True)
