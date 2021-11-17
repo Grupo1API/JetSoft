@@ -5,9 +5,10 @@ from functools import wraps
 # importando biblioteca para conectar com mysql
 from flaskext.mysql import MySQL
 
+app = Flask(__name__)
 mysql = MySQL()
 # iniciando variavel app
-app = Flask(__name__)
+
 app.secret_key = "flash message"
 
 # configurando conexão com banco de dados
@@ -16,7 +17,7 @@ app.config['MYSQL_DATABASE_PASSWORD'] = '027cf5ac'
 app.config['MYSQL_DATABASE_DB'] = 'jetsoft'
 app.config['MYSQL_DATABASE_HOST'] = 'us-cdbr-east-04.cleardb.com'
 
-mysql.init_app(app)
+# mysql.init_app(app)
 # python -m pip install --upgrade pip setuptools virtualenv- para atualizar o env
 # rota para a página inicial
 # config pro phpmyadmin em caso de o erro: "Field ''1'' doesn't have a default value no wampserver
