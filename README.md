@@ -38,15 +38,15 @@
 - <img src = "./readme/feito.jpeg" /> Cadastro de postos de trabalho;
 - <img src = "./readme/feito.jpeg" /> Cadastro de alocação;
 - <img src = "./readme/feito.jpeg" /> Quadro de presença;
-- <img src = "./readme/a_fazer.jpeg" /> Painel adminitrativo para alterações;
-- <img src = "./readme/a_fazer.jpeg" /> Emissão de relatorios;
+- <img src = "./readme/feito.jpeg" /> Painel adminitrativo para alterações;
+- <img src = "./readme/feito.jpeg" /> Emissão de relatorios;
 
   <br>
 
 > **Requisitos não funcionais**
 
 - <img src = "./readme/feito.jpeg" /> Banco de dados relacional;
-- <img src = "./readme/a_fazer.jpeg" /> O sistema deve ter um plano de contingência caso ocorra falhas;
+- <img src = "./readme/feito.jpeg" /> O sistema deve ter um plano de contingência caso ocorra falhas;
 - <img src = "./readme/feito.jpeg" /> O sistema deve ser seguro.
 - <img src = "./readme/feito.jpeg" /> O sistema deve ser simples e fácil de usar.
 
@@ -62,13 +62,13 @@
 
 - <img src = "./readme/feito.jpeg" /> [ SPRINT 3 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-3) - 18/10/2021 a 07/11/202
 
-- <img src = "./readme/a_fazer.jpeg" /> SPRINT 4 - 08/11/2021 a 28/11/2021
+- <img src = "./readme/feito.jpeg" /> [ SPRINT 4 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-4) - 08/11/2021 a 28/11/2021
 
 - <img src = "./readme/a_fazer.jpeg" /> Apresentação Final - 29/11/2021 a 05/12/2021
 
 - <img src = "./readme/a_fazer.jpeg" /> Feira de Soluções - 16/12/2021
 
-<h1 align="center"> <img src = "./readme/cronograma.png"/></h1>
+<h1 align="center"> <img src = "./readme/cronograma-atualizado.png"/></h1>
 
 <br>
 
@@ -92,7 +92,7 @@
 
 ## 📋 Product Backlog
 
-<h1 align="center"> <img src = "./readme/Backlog.png" /></h1>
+<h1 align="center"> <img src = "./readme/Backlog-atualizado.png" /></h1>
 
 <br>
 

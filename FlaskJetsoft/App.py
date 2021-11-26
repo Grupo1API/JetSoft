@@ -76,14 +76,17 @@ def index():
     return render_template('/index.html', data=data, quadro_cliente=quadro_cliente, numeroColaboradores=numeroColaboradores, numeroPostos=numeroPostos, numeroCliente=numeroCliente, nome=nome, nivel=nivel)
   
 
-@app.route('/controle_presenca', methods=['GET', 'POST'])
+@app.route('/presenca_tatico', methods=['GET', 'POST'])
 @login_required
-def controle():
-
+@login_nivel
+def presenca_tatico():
+    mesaberto = datetime.today().strftime('%m')
+    listames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
+    global mesfechado
     con = mysql.connect()
     cur = con.cursor()
     cur.execute(
-        "SELECT * FROM controle_presenca order by posto_trabalho, tipo_cobertura ,registro")
+        "SELECT * FROM `%s` order by posto_trabalho, tipo_cobertura ,registro",mesaberto)
     data = cur.fetchall()
     cur.execute(
         "SELECT nome_completo FROM colaboradores"
@@ -95,18 +98,61 @@ def controle():
     nivel = cur.fetchall()
 
     if request.method == "POST":
-        colaborador = request.form["colaborador"]
-        dia = request.form["dia"]
-        pouf = request.form["pouf"]
-
+        flash("Fechamento realizado!")
+        mesfechado = mesaberto
         cur.execute(
-            "UPDATE `controle_presenca` SET `%s` = %s WHERE `colaborador` = %s", (
-                dia, pouf, colaborador)
+            "UPDATE `mes` SET `mes_fechado` = %s", (mesfechado)
         )
         con.commit()
+        return redirect(url_for('presenca_tatico'))
+    else:
+        return render_template('/presenca_tatico.html',controle=data,  mesaberto=listames[int(mesaberto)-1], colaborador=colaborador, nome=nome, nivel=nivel)
+
+
+@app.route('/controle_presenca', methods=['GET', 'POST'])
+@login_required
+def controle():
+    mesaberto = datetime.today().strftime('%m')
+    listames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
+    con = mysql.connect()
+    cur = con.cursor()
+    cur.execute(
+        'SELECT mes_fechado FROM mes'
+    )
+    mesfechado = str(cur.fetchall()).replace("'","")
+    mesfechado = mesfechado.replace("(","")
+    mesfechado = mesfechado.replace(")","")
+    mesfechado = mesfechado.replace(",","")
+    print(mesfechado)
+    cur.execute(
+        "SELECT * FROM `%s` order by posto_trabalho, tipo_cobertura ,registro",mesaberto)
+    data = cur.fetchall()
+    cur.execute(
+        "SELECT nome_completo FROM colaboradores"
+    )
+    colaborador = cur.fetchall()
+    cur.execute('SELECT nome FROM usuarios ')
+    nome = cur.fetchall()
+    cur.execute('SELECT nivel FROM usuarios ')
+    nivel = cur.fetchall()
+
+    if request.method == "POST":
+        if mesaberto == mesfechado:
+            flash("Erro: Esse mês já foi validado pelo usuário Tático")
+            return redirect(url_for('controle'))
+        else:
+            colaborador = request.form["colaborador"]
+            dia = request.form["dia"]
+            pouf = request.form["pouf"]
+
+            cur.execute(
+                "UPDATE `%s` SET `%s` = %s WHERE `colaborador` = %s", (
+                    mesaberto, dia, pouf, colaborador)
+            )
+            con.commit()
         return redirect(url_for('controle'))
     else:
-        return render_template('/controle_presenca.html',controle=data, colaborador=colaborador, nome=nome, nivel=nivel)
+        return render_template('/controle_presenca.html', mesaberto=listames[int(mesaberto)-1], controle=data, colaborador=colaborador, nome=nome, nivel=nivel)
 
 # rota para a página de destino (cadastro de colaboradores)
 
@@ -153,7 +199,51 @@ def cadastro():
         colaborador_id = cur.fetchall()
 
         cur.execute(
-            "INSERT INTO `controle_presenca` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+            "INSERT INTO `'1'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'2'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'3'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'4'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'5'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'6'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'7'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'8'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'9'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'10'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'11'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
+                nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
+        )
+        cur.execute(
+            "INSERT INTO `'12'` (`colaborador`, `colaborador_id`,`posto_trabalho`, `posto_trabalho_id`,`funcao`, `tipo_cobertura`) VALUES (%s, %s, %s, %s, %s, %s)", (
                 nome, colaborador_id, posto_trabalho, posto_trabalho_id, funcao, tipo_cobertura)
         )
         con.commit()
@@ -453,167 +543,28 @@ def quadro_contrato():
 
     return render_template('/quadro_contrato.html', quadro_contrato=quadro_contrato, nome=nome, nivel=nivel)
 
-@app.route('/download/pdf/id')
-@login_required
-def download_by_id():
+
+@app.route('/download')
+def download_presenca():
     try:
+        mesaberto = datetime.today().strftime('%m')
         con = mysql.connect()
         cur = con.cursor(pymysql.cursors.DictCursor)
-        id = request.args.get('id')
-        cur.execute("SELECT contrato.id,cliente.razao_social,cliente.cnpj,cliente.nome_fantasia, cliente.endereco,cliente.numero,cliente.bairro,cliente.cidade,cliente.estado_uf,cliente.cep,cliente.contato,cliente.email,cliente.data_admissao,contrato.valor,posto_trabalho.nome_posto,posto_trabalho.descricao,contrato.escala,posto_trabalho.qtd_colaborador FROM contrato inner join cliente on contrato.cliente_id=cliente.id inner join posto_trabalho on contrato.posto_trabalho_id=posto_trabalho.id WHERE contrato.id = " + id)
+        cur.execute( "SELECT * FROM `%s` order by posto_trabalho, tipo_cobertura ,registro",mesaberto)
         result = cur.fetchall()
-
-        cur.execute('SELECT nome FROM usuarios ')
-        nome = cur.fetchall()
-        cur.execute('SELECT nivel FROM usuarios ')
-        nivel = cur.fetchall()
-        class PDF(FPDF):
-
-            def header(self):
-                genDateTime = "" + datetime.now().strftime('%d/%m/%Y %H:%M:%S')
-                self.image('logo.png', w=0, h=0, type='png')#Logo
-
-                self.set_y(10)
-                self.set_font('Helvetica', 'I', 8)
-                self.cell(0, 5, genDateTime, ln=1, align='R')
-
-                self.set_font('Helvetica', 'B', 20)
-                self.set_text_color(0)
-                self.cell(0, 5, txt='Contrato Nº: ' + id, ln=2, align='C')
-                self.ln(20)
-
-                # self.ln(20)
-            def footer(self):
-                self.set_y(-15)
-                self.set_font('Helvetica', 'I', 8)
-                self.cell(0, 10, 'Página ' + str(self.page_no()) +
-                          '/{nb}', 0, 0, 'R')  # numero da página no rodapé
-
-        pdf = PDF('P', 'mm', 'A4')
-        pdf.alias_nb_pages()
-        pdf.add_page(['P'])
-        pdf.set_title('Contrato Nº: '+id)
-        pdf.set_fill_color(45, 67, 100)
-        pdf.set_left_margin(15)
-        pdf.set_right_margin(15)
-        pdf.set_font('Helvetica', '', 12)
-        pdf.set_text_color(0)
-
-        for row in result:
-            pdf.set_font('Helvetica', 'B', 12.)
-            pdf.set_text_color(255, 255, 255)
-            pdf.cell(90, 10, "Razão Social", border=1,fill=True)
-            pdf.multi_cell(90, 10, "Nome Fantasia", border=1,fill=True)
-
-            pdf.set_text_color(0)
-            pdf.cell(90, 10, str(row['razao_social']), border=1)
-            pdf.multi_cell(90, 10, str(row['nome_fantasia']), border=1)
-
-            pdf.set_text_color(255, 255, 255)
-            pdf.multi_cell(0, 10, "CNPJ", border=1,fill=True)
-            pdf.set_text_color(0)
-            pdf.multi_cell(0, 10, str(row['cnpj']), border=1)
-            
-
-
-            pdf.set_text_color(255, 255, 255)
-            pdf.cell(90, 10, "Endereço", border=1,fill=True)
-            pdf.cell(30, 10, "Nº", border=1,fill=True)
-            pdf.multi_cell(60, 10, "Bairro", border=1,fill=True)
-
-            pdf.set_text_color(0)
-            pdf.cell(90, 10, str(row['endereco']), border=1)
-            pdf.cell(30, 10, str(row['numero']), border=1)
-            pdf.multi_cell(60, 10, str(row['bairro']), border=1)
-
-
-            pdf.set_text_color(255, 255, 255)
-            pdf.cell(90, 10, "Cidade", border=1,fill=True)
-            pdf.cell(30, 10, "Estado", border=1,fill=True)
-            pdf.multi_cell(60, 10, "CEP", border=1,fill=True)
-
-            pdf.set_text_color(0)
-            pdf.cell(90, 10, str(row['cidade']), border=1)
-            pdf.cell(30, 10, str(row['estado_uf']), border=1)
-            pdf.multi_cell(60, 10, str(row['cep']), border=1)
-
-                        
-            
-
-            pdf.set_text_color(255, 255, 255)
-            pdf.cell(90, 10, "Contato", border=1,fill=True)
-            pdf.multi_cell(90, 10, "E-mail", border=1,fill=True)
-
-
-            pdf.set_text_color(0)
-            pdf.cell(90, 10, str(row['contato']), border=1)
-            pdf.multi_cell(90, 10, str(row['email']), border=1)
-
-
-            pdf.set_text_color(255, 255, 255)
-            pdf.multi_cell(0, 10, "Data de Admissão", border=1,fill=True)
-            pdf.set_text_color(0)
-            pdf.multi_cell(0, 10, str(row['data_admissao']), border=1)
-            pdf.ln(10)
-
-
-            pdf.set_text_color(255, 255, 255)
-            pdf.cell(40, 10, "Nº do Contrato", border=1,fill=True)
-            pdf.cell(30, 10, "Valor", border=1,fill=True)
-            pdf.cell(30, 10, "Escala", border=1,fill=True)
-            pdf.multi_cell(80, 10, "Quantidade de Colaboradores", border=1,fill=True)
-            pdf.set_text_color(0)
-            pdf.cell(40,10, str(row['id']), border=1)
-            pdf.cell(30, 10, str(row['valor']), border=1)
-            pdf.cell(30, 10, str(row['escala']), border=1)
-            pdf.multi_cell(80, 10, str(row['qtd_colaborador']), border=1)
-
-
-            pdf.set_text_color(255, 255, 255)
-            pdf.cell(70, 10, "Posto de Trabalho", border=1,fill=True)
-            pdf.multi_cell(110, 10, "Descrição do Posto", border=1,fill=True)
-            pdf.set_text_color(0)
-            pdf.cell(70, 10, str(row['nome_posto']), border=1)
-            pdf.multi_cell(110, 10, str(row['descricao']), border=1)
-            
-            
-            pdf.ln(10)
-
-        pdf.cell(0,0,border=0)
-
-        return Response(pdf.output(dest='S').encode('latin-1'), mimetype='application/pdf', headers={'Content-Disposition': 'attachment;filename=Contrato Nº '+id+'.pdf'})
-
-    except Exception as e:
-        print(e)
-
-
-@app.route('/download/pdf')
-@login_required
-def download_PDF():
-    try:
-        con = mysql.connect()
-        cur = con.cursor(pymysql.cursors.DictCursor)
-        cur.execute("SELECT contrato.id,cliente.razao_social,cliente.cnpj,posto_trabalho.nome_posto,contrato.escala,contrato.valor,contrato.data_admissao FROM contrato inner join cliente on contrato.cliente_id=cliente.id inner join posto_trabalho on contrato.posto_trabalho_id=posto_trabalho.id ORDER BY contrato.id")
-        result = cur.fetchall()
-        cur.execute("SELECT nome FROM usuarios")
-        nome = cur.fetchall()
-        cur.execute("SELECT nivel FROM usuarios")
-        nivel = cur.fetchall()
-
+        
         from fpdf import FPDF
-
         class PDF(FPDF): #Header e Footer adicionados automaticametne após o pdf.add_page
             #Cabeçalho
             def header(self):
                 genDateTime = "" + datetime.now().strftime('%d/%m/%Y %H:%M:%S') #Data e hora atual
-                self.image('logo.png', w=0, h=0, type='png') # Logo
                 self.set_y(10)
                 self.set_font('Arial', 'I', 8)
                 self.cell(0, 5, genDateTime, ln=1, align='R')
                 
                 self.set_font('Helvetica', 'B', 20)
                 self.set_text_color(0)
-                self.cell(0, 5, 'Contratos', ln=2, align='C') #Título
+                self.cell(0, 5, 'Controle de Presença', ln=2, align='C') #Título
                 self.ln(20)
 
             #Rodapé 
@@ -636,13 +587,11 @@ def download_PDF():
         pdf.set_fill_color(45, 67, 100)
         pdf.set_text_color(255, 255, 255)
 
-        pdf.cell(32.5, 5, "Nº do Contrato", border='TB', fill=True,align='C')
-        pdf.cell(60, 5, "Cliente", border='TB', fill=True,align='C')
-        pdf.cell(40, 5, "CNPJ", border='TB', fill=True,align='C')
+        pdf.cell(32.5, 5, "Registro", border='TB', fill=True,align='C')
+        pdf.cell(60, 5, "Colaborador", border='TB', fill=True,align='C')
         pdf.cell(40, 5, "Postos de Trabalho", border='TB', fill=True,align='C')
-        pdf.cell(25, 5, "Escala", border='TB', fill=True,align='C')
-        pdf.cell(30, 5, "Valor", border='TB', fill=True,align='C')
-        pdf.multi_cell(0, 5, "Início do Contrato", border='TB', fill=True,align='C')
+        pdf.cell(25, 5, "Função", border='TB', fill=True,align='C')
+        pdf.cell(30, 5, "Cobertura", border='TB', fill=True,align='C')
 
         pdf.ln(2)
 
@@ -651,13 +600,11 @@ def download_PDF():
         pdf.set_left_margin(15)
         pdf.set_right_margin(15)
         for row in result:
-            pdf.cell(32.5,5, str(row['id']), border=0,align='C')
-            pdf.cell(60, 5, str(row['razao_social']), border=0,align='C')
-            pdf.cell(40, 5, str(row['cnpj']), border=0,align='C')
-            pdf.cell(40, 5, str(row['nome_posto']), border=0,align='C')
-            pdf.cell(25, 5, str(row['escala']), border=0,align='C')
-            pdf.cell(30, 5, str(row['valor']), border=0,align='C')
-            pdf.multi_cell(0, 5, str(row['data_admissao']),border=0,align='C')
+            pdf.cell(32.5,5, str(row['registro']), border=0,align='C')
+            pdf.cell(60, 5, str(row['colaborador']), border=0,align='C')
+            pdf.cell(40, 5, str(row['posto_trabalho']), border=0,align='C')
+            pdf.cell(40, 5, str(row['funcao']), border=0,align='C')
+            pdf.cell(25, 5, str(row['tipo_cobertura']), border=0,align='C')
             pdf.ln(2)
         pdf.cell(0,0,border=1)
         return Response(pdf.output(dest='S').encode('latin-1'), mimetype='application/pdf', headers={'Content-Disposition': 'attachment;filename=Contratos - ' + genDateTime +'.pdf'})
@@ -665,7 +612,123 @@ def download_PDF():
     except Exception as e:
         print(e)
 
+@app.route('/download/pdf')
+def download_by_id():
+    try:
+        con = mysql.connect()
+        cur = con.cursor(pymysql.cursors.DictCursor)
+        id = request.args.get('id')
+        cur.execute("SELECT contrato.id,cliente.razao_social,cliente.cnpj,cliente.nome_fantasia, cliente.endereco,cliente.numero,cliente.bairro,cliente.cidade,cliente.estado_uf,cliente.cep,cliente.contato,cliente.email,cliente.data_admissao,contrato.valor,posto_trabalho.nome_posto,posto_trabalho.descricao,contrato.escala,posto_trabalho.qtd_colaborador FROM contrato inner join cliente on contrato.cliente_id=cliente.id inner join posto_trabalho on contrato.posto_trabalho_id=posto_trabalho.id WHERE contrato.id = %s", (id))
+        result = cur.fetchall()
+        class PDF(FPDF):
 
+            def header(self):
+                genDateTime = "" + datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+                year = "" + datetime.now().strftime('%Y')
+                
+                self.set_y(10)
+                self.set_font('Helvetica', 'I', 8)
+                self.cell(0, 5, genDateTime, ln=1, align='R')
+
+                self.set_font('Helvetica', 'B', 20)
+                self.set_text_color(0)
+                self.cell(0, 5, txt='Contrato Nº: ' + id, ln=2, align='C')
+                self.ln(20)
+
+                # self.ln(20)
+            def footer(self):
+                self.set_y(-15)
+                self.set_font('Helvetica', 'I', 8)
+                self.cell(0, 10, 'Página ' + str(self.page_no()) +
+                          '/{nb}', 0, 0, 'R')  # numero da página no rodapé
+
+        pdf = PDF('P', 'mm', 'A4')
+        pdf.alias_nb_pages()
+        pdf.add_page(['P'])
+        year = "" + datetime.now().strftime('%Y')
+        pdf.set_title('Contrato Nº: '+id)
+        pdf.set_fill_color(45, 67, 100)
+        pdf.set_left_margin(15)
+        pdf.set_right_margin(15)
+        pdf.set_font('Helvetica', '', 12)
+        pdf.set_text_color(0)
+
+        for row in result:
+            pdf.set_font('Helvetica', 'B', 12.)
+            pdf.set_text_color(255, 255, 255)
+            pdf.cell(90, 10, "Razão Social", border=1,fill=True)
+            pdf.multi_cell(90, 10, "Nome Fantasia", border=1,fill=True)
+
+            pdf.set_text_color(0)
+            pdf.cell(90, 10, str(row['razao_social']), border=1)
+            pdf.multi_cell(90, 10, str(row['nome_fantasia']), border=1)
+
+            pdf.set_text_color(255, 255, 255)
+            pdf.multi_cell(0, 10, "CNPJ", border=1,fill=True)
+            pdf.set_text_color(0)
+            pdf.multi_cell(0, 10, str(row['cnpj']), border=1)
+            
+            pdf.set_text_color(255, 255, 255)
+            pdf.cell(90, 10, "Endereço", border=1,fill=True)
+            pdf.cell(30, 10, "Nº", border=1,fill=True)
+            pdf.multi_cell(60, 10, "Bairro", border=1,fill=True)
+
+            pdf.set_text_color(0)
+            pdf.cell(90, 10, str(row['endereco']), border=1)
+            pdf.cell(30, 10, str(row['numero']), border=1)
+            pdf.multi_cell(60, 10, str(row['bairro']), border=1)
+
+
+            pdf.set_text_color(255, 255, 255)
+            pdf.cell(90, 10, "Cidade", border=1,fill=True)
+            pdf.cell(30, 10, "Estado", border=1,fill=True)
+            pdf.multi_cell(60, 10, "CEP", border=1,fill=True)
+
+            pdf.set_text_color(0)
+            pdf.cell(90, 10, str(row['cidade']), border=1)
+            pdf.cell(30, 10, str(row['estado_uf']), border=1)
+            pdf.multi_cell(60, 10, str(row['cep']), border=1)
+
+            pdf.set_text_color(255, 255, 255)
+            pdf.cell(90, 10, "Contato", border=1,fill=True)
+            pdf.multi_cell(90, 10, "E-mail", border=1,fill=True)
+
+            pdf.set_text_color(0)
+            pdf.cell(90, 10, str(row['contato']), border=1)
+            pdf.multi_cell(90, 10, str(row['email']), border=1)
+
+            pdf.set_text_color(255, 255, 255)
+            pdf.multi_cell(0, 10, "Data de Admissão", border=1,fill=True)
+            pdf.set_text_color(0)
+            pdf.multi_cell(0, 10, str(row['data_admissao']), border=1)
+            pdf.ln(10)
+
+            pdf.set_text_color(255, 255, 255)
+            pdf.cell(40, 10, "Nº do Contrato", border=1,fill=True)
+            pdf.cell(30, 10, "Valor", border=1,fill=True)
+            pdf.cell(30, 10, "Escala", border=1,fill=True)
+            pdf.multi_cell(80, 10, "Quantidade de Colaboradores", border=1,fill=True)
+            pdf.set_text_color(0)
+            pdf.cell(40,10, str(row['id']), border=1)
+            pdf.cell(30, 10, str(row['valor']), border=1)
+            pdf.cell(30, 10, str(row['escala']), border=1)
+            pdf.multi_cell(80, 10, str(row['qtd_colaborador']), border=1)
+
+            pdf.set_text_color(255, 255, 255)
+            pdf.cell(70, 10, "Posto de Trabalho", border=1,fill=True)
+            pdf.multi_cell(110, 10, "Descrição do Posto", border=1,fill=True)
+            pdf.set_text_color(0)
+            pdf.cell(70, 10, str(row['nome_posto']), border=1)
+            pdf.multi_cell(110, 10, str(row['descricao']), border=1)
+                       
+            pdf.ln(10)
+
+        pdf.cell(0,0,border=0)
+
+        return Response(pdf.output(dest='S').encode('latin-1'), mimetype='application/pdf', headers={'Content-Disposition': 'attachment;filename=Contrato Nº '+id+'.pdf'})
+
+    except Exception as e:
+        print(e)
 
 if __name__ == "__main__":
     app.run(debug=True)
