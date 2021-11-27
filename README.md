@@ -21,7 +21,7 @@
 
 <br>
 
-> Status do Projeto: Em andamento <img src = "./readme/Works-in-progress-icon.png" />
+> Status do Projeto: Concluido - Link do Aplicativo <a href="http://digitalsolutions.pythonanywhere.com/">--Digital Solutions</a>
 
 <br>
 
