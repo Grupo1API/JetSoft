@@ -11,7 +11,7 @@ Foi realizado o deploy da aplicação na plataforma 'pythonanywhere' e foi inser
 
 ## Sprint Backlog
 
-<h1 align="center"> <img src = "../sprint-3/Sprint 3.png"/></h1>
+<h1 align="center"> <img src = "../sprint-4/Sprint 4.png"/></h1>
 <br>
 
 ## Burndown da Sprint
