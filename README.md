@@ -22,7 +22,12 @@
 
 <br>
 
-> Status do Projeto: Concluido - Link do Aplicativo <a href="http://digitalsolutions.pythonanywhere.com/">--Digital Solutions</a>
+> Status do Projeto: Concluido
+> <a href="http://digitalsolutions.pythonanywhere.com/">--Digital Solutions</a>
+
+> Para realizar teste pode ser usar:
+> conta: administrador2
+> senha: senha2
 
 <br>
 
