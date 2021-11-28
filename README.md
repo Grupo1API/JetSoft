@@ -10,7 +10,8 @@
   <a href ="#bulb-metodologia-utilizada"> Metodologia </a>  • 
   <a href ="#product-backlog">Product Backlog </a>  •
     <a href ="#sprints-backlog">Sprints Backlog </a>  •
-  <a href ="#equipe"> Equipe </a> 
+  <a href ="#equipe"> Equipe </a> •
+  <a href="https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-4/Manual.pdf">Manual do Site </a>
 </p>
 
 <br>
