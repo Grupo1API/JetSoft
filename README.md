@@ -25,8 +25,8 @@
 > Status do Projeto: Concluido
 > <a href="http://digitalsolutions.pythonanywhere.com/">--Digital Solutions</a>
 
-> Para realizar teste pode ser usar:
-> conta: administrador2
+> Para realizar teste pode ser usar:<br>
+> conta: administrador2<br>
 > senha: senha2
 
 <br>
