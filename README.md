@@ -23,11 +23,6 @@
 <br>
 
 > Status do Projeto: Concluido
-> <a href="http://digitalsolutions.pythonanywhere.com/">--Digital Solutions</a>
-
-> Para realizar teste pode ser usar:<br>
-> conta: administrador2<br>
-> senha: senha2
 
 <br>
 
@@ -70,9 +65,9 @@
 
 - <img src = "./readme/feito.jpeg" /> [ SPRINT 4 ](https://github.com/Grupo1API/JetSoft/tree/main/readme/sprint-4) - 08/11/2021 a 28/11/2021
 
-- <img src = "./readme/a_fazer.jpeg" /> Apresentação Final - 29/11/2021 a 05/12/2021
+- <img src = "./readme/feito.jpeg" /> Apresentação Final - 29/11/2021 a 05/12/2021
 
-- <img src = "./readme/a_fazer.jpeg" /> Feira de Soluções - 16/12/2021
+- <img src = "./readme/feito.jpeg" /> [Feira de Soluções](https://youtu.be/xGE51h8fBuY) - 16/12/2021
 
 <h1 align="center"> <img src = "./readme/cronograma-atualizado.png"/></h1>
 
